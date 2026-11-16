@@ -34,11 +34,11 @@
     </header>
 
     <main>
-        <!-- Planning du personnel par service -->
+        <!-- Planning du personnel par service : se remplit avec ce qui est ajouté dans l'agenda -->
         <section class="service" aria-labelledby="titre-menage">
             <div class="title-row">
                 <h1 id="titre-menage">Ménage</h1>
-                <a class="programmer" href="agenda.html">Programmer</a>
+                <a class="programmer" href="agenda.html#menage">Programmer</a>
             </div>
             <div class="table-wrap">
                 <table class="equipe">
@@ -50,14 +50,8 @@
                             <th scope="col">Forfait</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Minté</td>
-                            <td>Abasse</td>
-                            <td>Lundi 08:00</td>
-                            <td>Matinée</td>
-                        </tr>
-                    </tbody>
+                    <!-- Rempli par js/team.js à partir du planning (agenda) -->
+                    <tbody id="liste-menage"></tbody>
                 </table>
             </div>
         </section>
@@ -65,6 +59,27 @@
         <section class="service" aria-labelledby="titre-cantine">
             <div class="title-row">
                 <h2 id="titre-cantine">Cantine</h2>
+                <a class="programmer" href="agenda.html#cantine">Programmer</a>
+            </div>
+            <div class="table-wrap">
+                <table class="equipe">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Horaire</th>
+                            <th scope="col">Forfait</th>
+                        </tr>
+                    </thead>
+                    <!-- Rempli par js/team.js à partir du planning (agenda) -->
+                    <tbody id="liste-cantine"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="service" aria-labelledby="titre-autre">
+            <div class="title-row">
+                <h2 id="titre-autre">Autres services</h2>
                 <a class="programmer" href="agenda.html">Programmer</a>
             </div>
             <div class="table-wrap">
@@ -77,15 +92,8 @@
                             <th scope="col">Forfait</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Même service que dans planning.json -->
-                        <tr>
-                            <td>Durame</td>
-                            <td>Benjamin</td>
-                            <td>Mercredi 11:00</td>
-                            <td>Service du midi</td>
-                        </tr>
-                    </tbody>
+                    <!-- Rempli par js/team.js à partir du planning (agenda) -->
+                    <tbody id="liste-autre"></tbody>
                 </table>
             </div>
         </section>
@@ -102,5 +110,7 @@
     </footer>
 
     <script src="../js/search.js"></script>
+    <script src="../js/planning_secours.js"></script>
+    <script src="../js/team.js"></script>
 </body>
 </html>
