@@ -162,6 +162,9 @@ main {
 }
 
 .programmer {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
     padding: 8px 34px;
     font-size: 22px;
     color: #cfe0ff;
@@ -179,6 +182,7 @@ main {
 }
 
 .table-wrap {
+    position: relative;
     overflow-x: auto;
     padding: 10px;
     border-radius: 24px;
@@ -226,6 +230,199 @@ main {
     background: rgba(255, 255, 255, 0.08);
 }
 
+/*Bulle add*/
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(5, 5, 40, 0.35);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: fade 0.25s ease;
+}
+
+.overlay[hidden] {
+    display: none;
+}
+
+.bubble {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 28px;
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    animation: rise 0.3s ease;
+}
+
+.bubble h2 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.bubble-close {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.bubble-close:hover {
+    opacity: 1;
+}
+
+
+    outline: 2px solid #8fd6ff;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    border: none;
+    font-size: 15px;
+}
+
+.field-row {
+    display: flex;
+    gap: 12px;
+}
+
+.bubble input[type="text"],
+.bubble textarea,
+.bubble select {
+    width: 100%;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 15px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    outline: none;
+    resize: vertical;
+}
+
+.bubble input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.bubble input:focus,
+.bubble textarea:focus,
+.bubble select:focus {
+    border-color: #8fd6ff;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.btn-submit {
+    padding: 12px;
+    border: none;
+    border-radius: 14px;
+    font: inherit;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, #3a74d6 0%, #1a1fd8 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+}
+
+.form-error {
+    min-height: 1em;
+    font-size: 14px;
+    color: #ffb4c0;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes rise {
+    from { transform: translateY(20px) scale(0.96); opacity: 0; }
+    to { transform: none; opacity: 1; }
+}
+
+
+.bubble select option {
+    color: #000;
+}
+
+/*Boutons supprimer dans le tableau*/
+.action {
+    width: 34px;
+    height: 34px;
+    margin: 0 2px;
+    font-size: 17px;
+    line-height: 1;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.action:hover,
+.action:focus-visible {
+    background: rgba(143, 214, 255, 0.45);
+    outline: none;
+}
+
+.action.delete:hover,
+.action.delete:focus-visible {
+    background: rgba(255, 120, 150, 0.5);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.equipe th.col-actions,
+.equipe td.col-actions {
+    width: 70px;
+    text-align: center;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
 /*Message quand un service est vide*/
 .equipe td.vide {
     height: 80px;
@@ -248,6 +445,8 @@ main {
     .title-row { margin-left: 0; gap: 16px; flex-wrap: wrap; }
     .title-row h1, .title-row h2 { font-size: 40px; }
     .programmer { font-size: 18px; padding: 6px 22px; }
+    .bubble { padding: 24px 18px; }
+    .field-row { flex-direction: column; }
     .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
     .footer address { font-size: 18px; }
 }

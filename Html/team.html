@@ -38,7 +38,7 @@
         <section class="service" aria-labelledby="titre-menage">
             <div class="title-row">
                 <h1 id="titre-menage">Ménage</h1>
-                <a class="programmer" href="agenda.html#menage">Programmer</a>
+                <button type="button" class="programmer" data-service="menage">Programmer</button>
             </div>
             <div class="table-wrap">
                 <table class="equipe">
@@ -48,9 +48,10 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Horaire</th>
                             <th scope="col">Forfait</th>
+                            <th scope="col" class="col-actions"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
-                    <!-- Rempli par js/team.js à partir du planning (agenda) -->
+                    <!-- Rempli par js/team.js : planning de l'agenda + ajouts faits ici -->
                     <tbody id="liste-menage"></tbody>
                 </table>
             </div>
@@ -59,7 +60,7 @@
         <section class="service" aria-labelledby="titre-cantine">
             <div class="title-row">
                 <h2 id="titre-cantine">Cantine</h2>
-                <a class="programmer" href="agenda.html#cantine">Programmer</a>
+                <button type="button" class="programmer" data-service="cantine">Programmer</button>
             </div>
             <div class="table-wrap">
                 <table class="equipe">
@@ -69,9 +70,10 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Horaire</th>
                             <th scope="col">Forfait</th>
+                            <th scope="col" class="col-actions"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
-                    <!-- Rempli par js/team.js à partir du planning (agenda) -->
+                    <!-- Rempli par js/team.js : planning de l'agenda + ajouts faits ici -->
                     <tbody id="liste-cantine"></tbody>
                 </table>
             </div>
@@ -80,7 +82,7 @@
         <section class="service" aria-labelledby="titre-autre">
             <div class="title-row">
                 <h2 id="titre-autre">Autres services</h2>
-                <a class="programmer" href="agenda.html">Programmer</a>
+                <button type="button" class="programmer" data-service="autre">Programmer</button>
             </div>
             <div class="table-wrap">
                 <table class="equipe">
@@ -90,14 +92,68 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Horaire</th>
                             <th scope="col">Forfait</th>
+                            <th scope="col" class="col-actions"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
-                    <!-- Rempli par js/team.js à partir du planning (agenda) -->
+                    <!-- Rempli par js/team.js : planning de l'agenda + ajouts faits ici -->
                     <tbody id="liste-autre"></tbody>
                 </table>
             </div>
         </section>
     </main>
+
+    <!-- Bulle d'ajout d'un membre (enregistré dans le même planning que l'agenda) -->
+    <div class="overlay" id="overlay" hidden>
+        <form class="bubble" id="form-team" role="dialog" aria-modal="true" aria-labelledby="bubble-title" novalidate>
+            <button class="bubble-close" type="button" aria-label="Fermer">&times;</button>
+            <h2 id="bubble-title">Programmer un membre</h2>
+
+            <div class="field-row">
+                <label class="field">
+                    <span>Prénom</span>
+                    <input type="text" name="prenom" required maxlength="30" autocomplete="off">
+                </label>
+                <label class="field">
+                    <span>Nom</span>
+                    <input type="text" name="nom" required maxlength="30" autocomplete="off">
+                </label>
+            </div>
+
+            <div class="field-row">
+                <label class="field">
+                    <span>Service</span>
+                    <select name="service">
+                        <option value="menage">Ménage</option>
+                        <option value="cantine">Cantine</option>
+                        <option value="autre">Autres services</option>
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Lieu</span>
+                    <input type="text" name="lieu" required maxlength="30" autocomplete="off">
+                </label>
+            </div>
+
+            <div class="field-row">
+                <label class="field">
+                    <span>Jour</span>
+                    <select name="jour"></select>
+                </label>
+                <label class="field">
+                    <span>Heure</span>
+                    <select name="heure"></select>
+                </label>
+            </div>
+
+            <label class="field">
+                <span>Forfait</span>
+                <input type="text" name="forfait" required maxlength="40" autocomplete="off" placeholder="Ex : Matinée, Service du midi…">
+            </label>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+            <button class="btn-submit" type="submit">Ajouter à l'équipe</button>
+        </form>
+    </div>
 
     <footer class="footer">
         <span class="footer-logo">eFrei</span>
