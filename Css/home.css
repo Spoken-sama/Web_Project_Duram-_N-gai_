@@ -9,8 +9,17 @@ body {
     min-height: 100vh;
     font-family: "Noto Serif", Georgia, serif;
     color: #fff;
+    background: #08086b;
+}
+
+/* Dégradé fixe sur un calque à part : évite de repeindre tout le fond à chaque scroll (lag) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background: linear-gradient(150deg, #02012a 0%, #08086b 45%, #1e3f9e 65%, #4fa6e0 88%, #6fd8ff 100%);
-    background-attachment: fixed;
+    pointer-events: none;
 }
 
 /*Navbar*/

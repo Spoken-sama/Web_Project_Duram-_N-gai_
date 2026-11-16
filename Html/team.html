@@ -1,156 +1,106 @@
-<!-- Déclaration du type de document et début de la structure HTML -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Images/efrei.png">
+    <title>2Bis - Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/style_team.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logos">
+            <span class="logo-efrei">eFrei</span>
+            <a href="Home.html" class="logo-2bis">2Bis</a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="stock.html">STOCK</a></li>
+                <li><a href="agenda.html">AGENDA</a></li>
+                <li><a href="team.html" class="active">TEAM</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+        <form class="search" role="search">
+            <input type="search" aria-label="Rechercher">
+            <button type="submit" aria-label="Rechercher">
+                <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15" y1="15" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+    </header>
 
-	<!-- Balise head contenant les métadonnées et le lien vers la feuille de style -->
-	<head>
-		<link rel="stylesheet" type="text/css" href="../Css/style_team.css">
-		<title>Team</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Style pour la classe nav -->
-		<style>.nav {
-			text-decoration: none;
-			color: white;
-		}
+    <main>
+        <!-- Planning du personnel par service -->
+        <section class="service" aria-labelledby="titre-menage">
+            <div class="title-row">
+                <h1 id="titre-menage">Ménage</h1>
+                <a class="programmer" href="agenda.html">Programmer</a>
+            </div>
+            <div class="table-wrap">
+                <table class="equipe">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Horaire</th>
+                            <th scope="col">Forfait</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Minté</td>
+                            <td>Abasse</td>
+                            <td>Lundi 08:00</td>
+                            <td>Matinée</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-		</style>
-	</head>
+        <section class="service" aria-labelledby="titre-cantine">
+            <div class="title-row">
+                <h2 id="titre-cantine">Cantine</h2>
+                <a class="programmer" href="agenda.html">Programmer</a>
+            </div>
+            <div class="table-wrap">
+                <table class="equipe">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Horaire</th>
+                            <th scope="col">Forfait</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Même service que dans planning.json -->
+                        <tr>
+                            <td>Durame</td>
+                            <td>Benjamin</td>
+                            <td>Mercredi 11:00</td>
+                            <td>Service du midi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
-	<!-- Balise body, corps de la page HTML -->
-	<body> <!-- Ici est la page de l'équipe (planning du personnel par service)-->
+    <footer class="footer">
+        <span class="footer-logo">eFrei</span>
+        <address>
+            <p>2Bis Paris :</p>
+            <p><a href="tel:+33188289001">+33 188 289 001</a></p>
+            <p><a href="mailto:2Bis@paris.net">2Bis@paris.net</a></p>
+            <p>30-32 Av. de la République, 94800 Villejuif</p>
+        </address>
+    </footer>
 
-		<!-- Balise nav, barre de navigation -->
-		<nav>
-
-			<!-- Conteneur fixe de la barre de navigation -->
-			<div class="sticky">
-			 	<!-- Liste non ordonnée avec plusieurs éléments de navigation -->
-				<ul>
-					<!-- Logo de l'efrei -->
-					<li class="logo">
-						<img src="../Images/efrei.png" width="100%">
-					</li>
-					<!-- Nom du site -->
-					<li class="titre">2Bis</li>
-			 		<!-- Élément de navigation vers la page d'accueil -->
-			 		<li>
-			 			<a class="nav" href="Home.html">HOME</a>
-			 		</li>
-			 		<!-- Élément de navigation vers la page des stocks -->
-			 		<li>
-				 		<a class="nav" href="stock.html">STOCK</a>
-					</li>
-				 	<!-- Élément de navigation vers la page de l'agenda -->
-				 	<li>
-				 		<a class="nav" href="agenda.html">AGENDA</a>
-				 	</li>
-				 	<!-- Élément de navigation vers la page de l'équipe -->
-				 	<li>
-				 		<a class="nav" href="team.html">TEAM</a>
-				 	</li>
-				 	<!-- Élément de navigation vers la page à propos -->
-				 	<li>
-				 		<a class="nav" href="about.html">ABOUT</a>
-				 	</li>
-				 	<!-- Barre de recherche avec la loupe -->
-				 	<li class="recherche">
-				 		<input type="text" name="recherche"><img src="../Images/loupe.png" class="loupe">
-				 	</li>
-			 	</ul>
-			 	<!-- Fin de la liste -->
-			</div>
-
-			<!-- Conteneur relatif et absolu -->
-			<div class="relative_absolute">
-				<!-- Titre de la partie ménage -->
-				<div class="absolute1"><p style="font-size: 52px; font-family: Georgia, serif;" class="titre_page">Ménage</p></div>
-
-				<!-- Bouton pour programmer le personnel du ménage (renvoie vers l'agenda) -->
-				<div class="absolute2"><a class="programmer" href="agenda.html">Programmer</a></div>
-
-				<!-- Tableau du personnel du ménage -->
-				<div class="absolute3">
-					<table class="equipe">
-						<!-- Première ligne avec le nom des colonnes -->
-						<tr class="entete">
-							<td style="width: 19%;">Nom</td>
-							<td style="width: 29%;">Prénom</td>
-							<td style="width: 27%;">Horaire</td>
-							<td style="width: 25%;">Forfait</td>
-						</tr>
-						<!-- Deuxième ligne avec un membre du personnel -->
-						<tr class="membre">
-							<td>Minté</td>
-							<td>Abasse</td>
-							<td>Lundi 08:00</td>
-							<td>Matinée</td>
-						</tr>
-						<!-- Ligne vide pour remplir le reste du tableau -->
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-
-				<!-- Titre de la partie cantine -->
-				<div class="absolute4"><p style="font-size: 52px; font-family: Georgia, serif;" class="titre_page">Cantine</p></div>
-
-				<!-- Bouton pour programmer le personnel de la cantine (renvoie vers l'agenda) -->
-				<div class="absolute5"><a class="programmer" href="agenda.html">Programmer</a></div>
-
-				<!-- Tableau du personnel de la cantine -->
-				<div class="absolute6">
-					<table class="equipe">
-						<!-- Première ligne avec le nom des colonnes -->
-						<tr class="entete">
-							<td style="width: 19%;">Nom</td>
-							<td style="width: 29%;">Prénom</td>
-							<td style="width: 27%;">Horaire</td>
-							<td style="width: 25%;">Forfait</td>
-						</tr>
-						<!-- Deuxième ligne avec un membre du personnel (même service que dans planning.json) -->
-						<tr class="membre">
-							<td>Durame</td>
-							<td>Benjamin</td>
-							<td>Mercredi 11:00</td>
-							<td>Service du midi</td>
-						</tr>
-						<!-- Ligne vide pour remplir le reste du tableau -->
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</nav>
-
-		<!-- Balise de pied de page -->
-		<footer></footer>
-
-		<!-- Tableau contenant les informations de contact de l'hôtel -->
-		<table>
-    		<tr>
-       		 <!-- Première colonne contenant le logo de l'efrei -->
-       		 <td style="width: 20%; text-align: center">
-        		    <img id="contact" src="../Images/efrei.png" alt="Logo efrei">
-        	 </td>
-
-        	 <!-- Deuxième colonne contenant l'adresse, le téléphone et le mail -->
-        	 <td style="width: 80%;">
-            		<p>2Bis Paris :</p>
-            		<p>+33 188 289 001</p>
-            		<p>2Bis@paris.net</p>
-            		<p>30-32 Av. de la République, 94800 Villejuif</p>
-        	 </td>
-    		</tr>
-		</table>
-	<!-- Fin du corps de la page HTML -->
-	</body>
+    <script src="../js/search.js"></script>
+</body>
 </html>

@@ -1,123 +1,117 @@
-<!-- Déclaration du type de document et début de la structure HTML -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Images/efrei.png">
+    <title>2Bis - Stock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/style_stock.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logos">
+            <span class="logo-efrei">eFrei</span>
+            <a href="Home.html" class="logo-2bis">2Bis</a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="stock.html" class="active">STOCK</a></li>
+                <li><a href="agenda.html">AGENDA</a></li>
+                <li><a href="team.html">TEAM</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+        <form class="search" role="search">
+            <input type="search" aria-label="Rechercher">
+            <button type="submit" aria-label="Rechercher">
+                <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15" y1="15" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+    </header>
 
-	<!-- Balise head contenant les métadonnées et le lien vers la feuille de style -->
-	<head>
-		<link rel="stylesheet" type="text/css" href="../Css/style_stock.css">
-		<title>Stock</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Style pour la classe nav -->
-		<style>.nav {
-			text-decoration: none;
-			color: white;
-		}
+    <main>
+        <div class="title-row">
+            <h1>Stocks:</h1>
+            <button class="btn-add" id="btn-add" type="button" aria-label="Ajouter un article au stock">+</button>
+        </div>
 
-		</style>
-	</head>
+        <section class="stock-panel" aria-label="Tableau des stocks">
+            <!-- Petite barre en haut à droite du tableau : filtre les lignes -->
+            <div class="stock-tools">
+                <span class="stock-count" id="stock-count"></span>
+                <input type="search" id="filtre" class="filtre" placeholder="Filtrer…" aria-label="Filtrer le stock">
+            </div>
 
-	<!-- Balise body, corps de la page HTML -->
-	<body> <!-- Ici est la page des stocks-->
+            <div class="table-wrap">
+                <table class="stock">
+                    <thead>
+                        <tr>
+                            <th scope="col"><button type="button" class="sort" data-cle="item">Item:</button></th>
+                            <th scope="col"><button type="button" class="sort" data-cle="quantite">Quantité:</button></th>
+                            <th scope="col"><button type="button" class="sort" data-cle="zone">Zone Associée:</button></th>
+                            <th scope="col"><button type="button" class="sort" data-cle="date">Date achat:</button></th>
+                            <th scope="col" class="col-actions"><span class="sr-only">Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
-		<!-- Balise nav, barre de navigation -->
-		<nav>
+    <!-- Bulle d'ajout / modification -->
+    <div class="overlay" id="overlay" hidden>
+        <form class="bubble" id="form-stock" role="dialog" aria-modal="true" aria-labelledby="bubble-title" novalidate>
+            <button class="bubble-close" type="button" aria-label="Fermer">&times;</button>
+            <h2 id="bubble-title">Ajouter au stock</h2>
 
-			<!-- Conteneur fixe de la barre de navigation -->
-			<div class="sticky">
-			 	<!-- Liste non ordonnée avec plusieurs éléments de navigation -->
-				<ul>
-					<!-- Logo de l'efrei -->
-					<li class="logo">
-						<img src="../Images/efrei.png" width="100%">
-					</li>
-					<!-- Nom du site -->
-					<li class="titre">2Bis</li>
-			 		<!-- Élément de navigation vers la page d'accueil -->
-			 		<li>
-			 			<a class="nav" href="Home.html">HOME</a>
-			 		</li>
-			 		<!-- Élément de navigation vers la page des stocks -->
-			 		<li>
-				 		<a class="nav" href="stock.html">STOCK</a>
-					</li>
-				 	<!-- Élément de navigation vers la page de l'agenda -->
-				 	<li>
-				 		<a class="nav" href="agenda.html">AGENDA</a>
-				 	</li>
-				 	<!-- Élément de navigation vers la page de l'équipe -->
-				 	<li>
-				 		<a class="nav" href="team.html">TEAM</a>
-				 	</li>
-				 	<!-- Élément de navigation vers la page à propos -->
-				 	<li>
-				 		<a class="nav" href="about.html">ABOUT</a>
-				 	</li>
-				 	<!-- Barre de recherche avec la loupe -->
-				 	<li class="recherche">
-				 		<input type="text" name="recherche"><img src="../Images/loupe.png" class="loupe">
-				 	</li>
-			 	</ul>
-			 	<!-- Fin de la liste -->
-			</div>
+            <label class="field">
+                <span>Item</span>
+                <input type="text" name="article" required maxlength="40" autocomplete="off">
+            </label>
 
-			<!-- Conteneur relatif et absolu -->
-			<div class="relative_absolute">
-				<!-- Titre de la page -->
-				<div class="absolute1"><p style="font-size: 85px; font-family: Georgia, serif;" class="titre_page">Stocks:</p></div>
+            <div class="field-row">
+                <label class="field">
+                    <span>Quantité</span>
+                    <input type="number" name="quantite" required min="0" max="99999" step="1" value="1">
+                </label>
+                <label class="field">
+                    <span>Zone associée</span>
+                    <input type="text" name="zone" required maxlength="30" list="liste-zones" autocomplete="off">
+                    <datalist id="liste-zones"></datalist>
+                </label>
+                <label class="field">
+                    <span>Date d'achat</span>
+                    <input type="date" name="date" required>
+                </label>
+            </div>
 
-				<!-- Tableau des stocks -->
-				<div class="absolute2">
-					<table class="stock">
-						<!-- Première ligne avec le nom des colonnes -->
-						<tr class="entete">
-							<td style="width: 20.5%;">Item:</td>
-							<td style="width: 20.3%;">Quantité:</td>
-							<td style="width: 22.6%;">Zone Associé:</td>
-							<td style="width: 36.6%;" class="derniere">Date achat:</td>
-						</tr>
-						<!-- Deuxième ligne avec un objet du stock -->
-						<tr class="objet">
-							<td>Coussin</td>
-							<td>x20</td>
-							<td>Chambres</td>
-							<td class="derniere">20/10/2025</td>
-						</tr>
-						<!-- Ligne vide pour remplir le reste du tableau -->
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td class="derniere"></td>
-						</tr>
-					</table>
-				</div>
+            <p class="form-error" id="form-error" role="alert"></p>
+            <button class="btn-submit" id="btn-submit" type="submit">Ajouter au stock</button>
+        </form>
+    </div>
 
-				<!-- Petite barre en haut à droite du tableau -->
-				<div class="absolute3"><input type="text" name="ajout"></div>
-			</div>
-		</nav>
+    <!-- Message d'annulation après suppression -->
+    <div class="toast" id="toast" role="status" hidden>
+        <span id="toast-text"></span>
+        <button type="button" id="toast-undo">Annuler</button>
+    </div>
 
-		<!-- Balise de pied de page -->
-		<footer></footer>
+    <footer class="footer">
+        <span class="footer-logo">eFrei</span>
+        <address>
+            <p>2Bis Paris :</p>
+            <p><a href="tel:+33188289001">+33 188 289 001</a></p>
+            <p><a href="mailto:2Bis@paris.net">2Bis@paris.net</a></p>
+            <p>30-32 Av. de la République, 94800 Villejuif</p>
+        </address>
+    </footer>
 
-		<!-- Tableau contenant les informations de contact de l'hôtel -->
-		<table>
-    		<tr>
-       		 <!-- Première colonne contenant le logo de l'efrei -->
-       		 <td style="width: 20%; text-align: center">
-        		    <img id="contact" src="../Images/efrei.png" alt="Logo efrei">
-        	 </td>
-
-        	 <!-- Deuxième colonne contenant l'adresse, le téléphone et le mail -->
-        	 <td style="width: 80%;">
-            		<p>2Bis Paris :</p>
-            		<p>+33 188 289 001</p>
-            		<p>2Bis@paris.net</p>
-            		<p>30-32 Av. de la République, 94800 Villejuif</p>
-        	 </td>
-    		</tr>
-		</table>
-	<!-- Fin du corps de la page HTML -->
-	</body>
+    <script src="../js/search.js"></script>
+    <script src="../js/stock.js"></script>
+</body>
 </html>

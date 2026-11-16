@@ -1,229 +1,564 @@
-/* Définit la couleur de fond du corps de la page web (dégradé bleu foncé vers bleu clair). */
+/* All page*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background: linear-gradient(135deg, #01012B 0%, #0A0872 50%, #13D3F7 100%);
-  font-family: Georgia, serif;
-  margin: 0px; /* enlève la marge autour de la page */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Noto Serif", Georgia, serif;
+    color: #fff;
+    background: #08086b;
 }
 
-/* Pour que le dégradé prenne toute la hauteur de l'écran. */
-html {
-  min-height: 100%;
+/* Dégradé fixe sur un calque à part : évite de repeindre tout le fond à chaque scroll (lag) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(150deg, #02012a 0%, #08086b 45%, #1e3f9e 65%, #4fa6e0 88%, #6fd8ff 100%);
+    pointer-events: none;
 }
 
-/* Définit la hauteur du pied de page de la page web. */
-footer{height: 50px}
-
-/* Stylise la liste de navigation en la débarrassant des puces, marges et paddings par défaut. */
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+main {
+    flex: 1;
+    padding: 0 20px 200px;
 }
 
-/* Stylise les éléments de la liste de navigation. */
-nav ul li {
-  width: 10%;
-  height: 80px;
-  line-height: 80px;
-  float: left;
-  text-align: center;
-}
-
-/* Stylise les liens dans la liste de navigation. */
-nav ul li a {
-  text-decoration: none;
-  font-size: 19px;
-  font-family: Georgia, serif;
-}
-
-/* Stylise un élément avec la classe "sticky" pour une barre de menu fixe en haut de la page. */
-.sticky{
-    position: sticky;
-    top: 10px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    height: 80px; /* modifie la hauteur */
-    margin: 0px 5px; /* ajoute de l'espace entre l'élément et son voisin */
-    background-color: rgba(75, 70, 150, 0.45);
+/* Barre de navigation */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 12px 8px 0;
+    padding: 10px 24px 10px 10px;
+    background: rgba(90, 85, 160, 0.4);
     border-radius: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* ombre sous la barre */
-    z-index: 1500; /* Pour que la barre nav sois utilisable même en naviguant dans la page */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Stylise le logo de l'efrei dans la barre de navigation. */
-.logo {
-    width: 8%;
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
-/* Centre verticalement l'image du logo. */
-.logo img {
-    vertical-align: middle;
+.logo-efrei {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #1a1a3a;
 }
 
-/* Stylise le nom du site "2Bis". */
-.titre {
-    width: 12%;
-    font-family: Impact, sans-serif;
-    font-size: 50px;
-    color: #0A0A3A;
+.logo-2bis {
+    font-family: "Oswald", sans-serif;
+    font-size: 48px;
+    color: #0b0b25;
+    text-decoration: none;
 }
 
-/* Stylise la case de la barre de recherche, placée à droite. */
-.recherche {
-    width: 24%;
-    float: right;
+.nav-links {
+    display: flex;
+    gap: 46px;
+    list-style: none;
 }
 
-/* Stylise la barre de recherche. */
-.recherche input[type ="text"] {
-    width: 85%;
-    height: 46px;
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 21px;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #8fd6ff;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    padding: 0 14px 0 20px;
+    height: 54px;
+    background: rgba(110, 105, 190, 0.6);
+    border-radius: 27px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.search input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
     border: none;
-    border-radius: 25px;
-    background-color: rgba(110, 100, 190, 0.7);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
-    vertical-align: middle;
-    color: white;
-    padding-left: 15px;
-}
-
-/* Enlève le contour quand on clique sur la barre de recherche. */
-.recherche input[type ="text"]:focus {
     outline: none;
+    color: #fff;
+    font: inherit;
 }
 
-/* Stylise la loupe, placée par dessus la barre de recherche. */
-.loupe {
-    width: 26px;
-    margin-left: -50px; /* décale la loupe vers la gauche pour qu'elle soit dans la barre */
-    vertical-align: middle;
+.search button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
 }
 
-/* Stylise un élément avec la classe "relative_absolute". */
-.relative_absolute{
-    width: 100%; /* modification de la largeur */
-    height: 820px; /* modifie la hauteur */
-    position: relative; /* positionb par défaut, statique */
+/*Titre et bouton*/
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 50px 0 10px 32px;
 }
 
-/* Stylise le titre de la page. */
-.absolute1{
-    width: 60%; /* modification de la largeur */
-    height: 120px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 40px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 2%; /* déplacement vers la gauche */
+h1 {
+    font-size: 96px;
+    font-weight: 400;
+    color: #c9c8e6;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Stylise le conteneur du tableau des stocks. */
-.absolute2{
-    width: 97%; /* modification de la largeur */
-    height: 550px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 170px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 1.5%; /* déplacement vers la gauche */
+.btn-add {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    font-size: 40px;
+    line-height: 1;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
 }
 
-/* Stylise la petite barre en haut à droite du tableau. */
-.absolute3{
-    width: 16%; /* modification de la largeur */
-    height: 34px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 184px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    right: 2.8%; /* déplacement vers la droite */
+.btn-add:hover {
+    transform: rotate(90deg) scale(1.05);
+    background: rgb(143, 214, 255, 0.5);
 }
 
-/* Stylise la barre à l'intérieur de absolute3. */
-.absolute3 input[type ="text"] {
+
+/*Bulle add*/
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(5, 5, 40, 0.35);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: fade 0.25s ease;
+}
+
+.overlay[hidden] {
+    display: none;
+}
+
+.bubble {
+    position: relative;
     width: 100%;
-    height: 34px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(110, 100, 190, 0.7);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
-    color: white;
-    padding-left: 15px;
-    box-sizing: border-box; /* le padding est compris dans la largeur */
+    max-width: 560px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 28px;
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    animation: rise 0.3s ease;
 }
 
-/* Enlève le contour quand on clique sur la barre. */
-.absolute3 input[type ="text"]:focus {
+.bubble h2 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.bubble-close {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.bubble-close:hover {
+    opacity: 1;
+}
+
+
+    outline: 2px solid #8fd6ff;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    border: none;
+    font-size: 15px;
+}
+
+.field-row {
+    display: flex;
+    gap: 12px;
+}
+
+.bubble input[type="text"],
+.bubble textarea,
+.bubble select {
+    width: 100%;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 15px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    outline: none;
+    resize: vertical;
+}
+
+.bubble input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.bubble input:focus,
+.bubble textarea:focus,
+.bubble select:focus {
+    border-color: #8fd6ff;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.btn-submit {
+    padding: 12px;
+    border: none;
+    border-radius: 14px;
+    font: inherit;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, #3a74d6 0%, #1a1fd8 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+}
+
+.form-error {
+    min-height: 1em;
+    font-size: 14px;
+    color: #ffb4c0;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes rise {
+    from { transform: translateY(20px) scale(0.96); opacity: 0; }
+    to { transform: none; opacity: 1; }
+}
+
+/*Footer*/
+.footer {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 30px 30px 40px;
+    background: linear-gradient(110deg, #2e2c7a 0%, #3c4fa8 35%, #6ea8de 70%, #8ee0ff 100%);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-logo {
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    color: #1a1a3a;
+}
+
+.footer address {
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1.75;
+    color: #d6d9f2;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/*Tableau des stocks*/
+.stock-panel {
+    padding: 14px 10px 10px;
+    border-radius: 24px;
+    background: rgba(100, 95, 170, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.stock-tools {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 0 8px 12px;
+}
+
+.stock-count {
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+.filtre {
+    width: 240px;
+    height: 36px;
+    padding: 0 16px;
+    font: inherit;
+    font-size: 15px;
+    color: #fff;
+    background: rgba(110, 105, 190, 0.6);
+    border: 1px solid transparent;
+    border-radius: 18px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
     outline: none;
 }
 
-/* Stylise le titre "Stocks:". */
-.titre_page {
-    margin: 0px;
-    color: #C8C8DC;
+.filtre::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
-/* Stylise le tableau des stocks. */
+.filtre:focus {
+    border-color: #8fd6ff;
+}
+
+.table-wrap {
+    position: relative; /* garde le texte caché (.sr-only) dans la zone qui défile */
+    overflow-x: auto;
+}
+
 .stock {
     width: 100%;
-    height: 100%;
-    border-spacing: 0px; /* enlève l'espace entre les cellules */
-    border-top: none;
-    border-radius: 20px;
-    background-color: rgba(70, 65, 150, 0.5);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* ombre sous le tableau */
+    min-width: 640px;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
 }
 
-/* Stylise les cellules du tableau des stocks. */
+.stock th,
 .stock td {
     text-align: center;
-    vertical-align: top; /* le texte reste en haut de la cellule */
-    border-right: 1px solid rgba(255, 255, 255, 0.15); /* trait entre les colonnes */
-    padding: 0px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    overflow-wrap: anywhere;
 }
 
-/* Stylise la dernière colonne du tableau (texte à gauche, pas de trait à droite). */
-.stock .derniere {
-    text-align: left;
-    padding-left: 7.5%;
+.stock th:nth-last-child(2),
+.stock td:nth-last-child(2) {
     border-right: none;
 }
 
-/* Stylise la première ligne (nom des colonnes). */
-.entete td {
-    height: 80px;
-    line-height: 80px;
-    font-size: 20px;
-    color: white;
+.stock th:last-child,
+.stock td:last-child {
+    border-right: none;
+    width: 96px;
 }
 
-/* Stylise la ligne d'un objet du stock. */
-.objet td {
-    height: 60px;
-    line-height: 60px;
-    font-size: 16px;
-    color: black;
+.stock th {
+    height: 56px;
+    font-size: 22px;
+    font-weight: 400;
+    background: rgba(120, 115, 200, 0.6);
 }
 
-/* Stylise tous les éléments div avec une hauteur de 100px. */
-div {
-    height: 100px;
+.stock th:first-child { border-radius: 20px 0 0 20px; }
+.stock th:last-child { border-radius: 0 20px 20px 0; }
+
+.sort {
+    width: 100%;
+    height: 100%;
+    padding: 0 8px;
+    font: inherit;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-/* Définit le style des tables sur la page. */
-table {
-    width: 100%; /* La table occupe 100% de la largeur de son conteneur. */
-    height: 180px; /* La table a une hauteur fixe de 180 pixels. */
-    background-color: rgba(75, 70, 150, 0.45); /* La couleur de fond de la table est violette transparente. */
-    border-top: 2px solid rgba(0, 0, 0, 0.3); /* Ajoute une ligne en haut du tableau. */
+.sort:hover,
+.sort.actif {
+    color: #8fd6ff;
 }
 
-/* Définit le style des cellules (td) dans la table. */
-td {
-    padding: 10px; /* Ajoute un espace intérieur de 10 pixels à toutes les cellules. */
-    color: #C8C8E8; /* Définit la couleur du texte dans les cellules en gris clair. */
-    font-size: 19px;
+.sort::after {
+    content: attr(data-sens);
+    margin-left: 6px;
+    font-size: 12px;
 }
 
-/* Enlève l'espace au dessus et en dessous des paragraphes du tableau. */
-td p {
-    margin: 8px;
+.stock td {
+    padding: 16px 10px;
+    font-size: 17px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Définit le style d'un élément avec l'ID "contact". */
-#contact {
-    max-width: 130px; /* La largeur maximale de l'élément est de 130 pixels. */
-    height: auto; /* La hauteur s'ajuste automatiquement pour maintenir les proportions d'origine. */
+.stock tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.objet {
+    animation: pop 0.25s ease;
+    transition: background 0.15s;
+}
+
+.objet:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.rupture {
+    color: #ffb4c0;
+}
+
+.stock td.vide {
+    padding: 60px 20px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.action {
+    width: 34px;
+    height: 34px;
+    margin: 0 2px;
+    font-size: 17px;
+    line-height: 1;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.action:hover,
+.action:focus-visible {
+    background: rgba(143, 214, 255, 0.45);
+    outline: none;
+}
+
+.action.delete:hover,
+.action.delete:focus-visible {
+    background: rgba(255, 120, 150, 0.5);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+@keyframes pop {
+    from { transform: scale(0.97); opacity: 0; }
+    to { transform: none; opacity: 1; }
+}
+
+/*Champ nombre/date dans la bulle*/
+.bubble input[type="number"],
+.bubble input[type="date"] {
+    width: 100%;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 15px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    outline: none;
+    color-scheme: dark;
+}
+
+.bubble input[type="number"]:focus,
+.bubble input[type="date"]:focus {
+    border-color: #8fd6ff;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/*Toast annulation*/
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 14px 12px 22px;
+    transform: translateX(-50%);
+    background: rgba(30, 28, 90, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    animation: fade 0.2s ease;
+}
+
+.toast[hidden] {
+    display: none;
+}
+
+.toast button {
+    padding: 6px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(90deg, #3a74d6 0%, #1a1fd8 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/*Pour page responsive*/
+@media (max-width: 1100px) {
+    .navbar { flex-wrap: wrap; }
+    .nav-links { gap: 24px; }
+    h1 { font-size: 64px; }
+    .stock th { font-size: 18px; }
+}
+
+@media (max-width: 800px) {
+    .navbar { justify-content: center; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .search { width: 100%; }
+    main { padding: 0 16px 80px; }
+    .title-row { margin-left: 0; gap: 16px; }
+    h1 { font-size: 44px; }
+    .btn-add { width: 48px; height: 48px; font-size: 30px; }
+    .stock-tools { justify-content: space-between; }
+    .filtre { width: 60%; }
+    .bubble { padding: 24px 18px; }
+    .field-row { flex-direction: column; }
+    .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer address { font-size: 18px; }
 }

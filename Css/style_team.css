@@ -1,250 +1,245 @@
-/* Définit la couleur de fond du corps de la page web (dégradé bleu foncé vers bleu clair). */
+/* All page*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background: linear-gradient(135deg, #01012B 0%, #0A0872 50%, #13D3F7 100%);
-  font-family: Georgia, serif;
-  margin: 0px; /* enlève la marge autour de la page */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Noto Serif", Georgia, serif;
+    color: #fff;
+    background: #08086b;
 }
 
-/* Pour que le dégradé prenne toute la hauteur de l'écran. */
-html {
-  min-height: 100%;
+/* Dégradé fixe sur un calque à part : évite de repeindre tout le fond à chaque scroll (lag) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(150deg, #02012a 0%, #08086b 45%, #1e3f9e 65%, #4fa6e0 88%, #6fd8ff 100%);
+    pointer-events: none;
 }
 
-/* Définit la hauteur du pied de page de la page web. */
-footer{height: 50px}
-
-/* Stylise la liste de navigation en la débarrassant des puces, marges et paddings par défaut. */
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+main {
+    flex: 1;
+    padding: 0 20px 200px;
 }
 
-/* Stylise les éléments de la liste de navigation. */
-nav ul li {
-  width: 10%;
-  height: 80px;
-  line-height: 80px;
-  float: left;
-  text-align: center;
-}
-
-/* Stylise les liens dans la liste de navigation. */
-nav ul li a {
-  text-decoration: none;
-  font-size: 19px;
-  font-family: Georgia, serif;
-}
-
-/* Stylise un élément avec la classe "sticky" pour une barre de menu fixe en haut de la page. */
-.sticky{
-    position: sticky;
-    top: 10px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    height: 80px; /* modifie la hauteur */
-    margin: 0px 5px; /* ajoute de l'espace entre l'élément et son voisin */
-    background-color: rgba(75, 70, 150, 0.45);
+/* Barre de navigation */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 12px 8px 0;
+    padding: 10px 24px 10px 10px;
+    background: rgba(90, 85, 160, 0.4);
     border-radius: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* ombre sous la barre */
-    z-index: 1500; /* Pour que la barre nav sois utilisable même en naviguant dans la page */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Stylise le logo de l'efrei dans la barre de navigation. */
-.logo {
-    width: 8%;
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
-/* Centre verticalement l'image du logo. */
-.logo img {
-    vertical-align: middle;
+.logo-efrei {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #1a1a3a;
 }
 
-/* Stylise le nom du site "2Bis". */
-.titre {
-    width: 12%;
-    font-family: Impact, sans-serif;
-    font-size: 50px;
-    color: #0A0A3A;
-}
-
-/* Stylise la case de la barre de recherche, placée à droite. */
-.recherche {
-    width: 24%;
-    float: right;
-}
-
-/* Stylise la barre de recherche. */
-.recherche input[type ="text"] {
-    width: 85%;
-    height: 46px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(110, 100, 190, 0.7);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
-    vertical-align: middle;
-    color: white;
-    padding-left: 15px;
-}
-
-/* Enlève le contour quand on clique sur la barre de recherche. */
-.recherche input[type ="text"]:focus {
-    outline: none;
-}
-
-/* Stylise la loupe, placée par dessus la barre de recherche. */
-.loupe {
-    width: 26px;
-    margin-left: -50px; /* décale la loupe vers la gauche pour qu'elle soit dans la barre */
-    vertical-align: middle;
-}
-
-/* Stylise un élément avec la classe "relative_absolute". */
-.relative_absolute{
-    width: 100%; /* modification de la largeur */
-    height: 1300px; /* modifie la hauteur */
-    position: relative; /* positionb par défaut, statique */
-}
-
-/* Stylise le titre "Ménage". */
-.absolute1{
-    width: 20%; /* modification de la largeur */
-    height: 80px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 235px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 2%; /* déplacement vers la gauche */
-}
-
-/* Stylise le conteneur du bouton "Programmer" du ménage. */
-.absolute2{
-    width: 16%; /* modification de la largeur */
-    height: 42px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 257px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 18.8%; /* déplacement vers la gauche */
-}
-
-/* Stylise le conteneur du tableau du ménage. */
-.absolute3{
-    width: 97%; /* modification de la largeur */
-    height: 300px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 323px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 1.5%; /* déplacement vers la gauche */
-}
-
-/* Stylise le titre "Cantine". */
-.absolute4{
-    width: 20%; /* modification de la largeur */
-    height: 80px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 685px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 2%; /* déplacement vers la gauche */
-}
-
-/* Stylise le conteneur du bouton "Programmer" de la cantine. */
-.absolute5{
-    width: 16%; /* modification de la largeur */
-    height: 42px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 702px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 18.3%; /* déplacement vers la gauche */
-}
-
-/* Stylise le conteneur du tableau de la cantine. */
-.absolute6{
-    width: 97%; /* modification de la largeur */
-    height: 300px; /* modifie la hauteur */
-    position: absolute; /* positionné par rapport à son élément parant (position relative) */
-    top: 773px; /* distance entre le bord supérieur :de la page, et de l'élément */
-    left: 1.5%; /* déplacement vers la gauche */
-}
-
-/* Stylise les titres "Ménage" et "Cantine". */
-.titre_page {
-    margin: 0px;
-    color: #C8C8DC;
-}
-
-/* Stylise le bouton "Programmer" en forme de pilule (dégradé bleu). */
-.programmer {
-    display: block;
-    width: 100%;
-    height: 42px;
-    line-height: 42px; /* centre le texte verticalement */
-    text-align: center;
+.logo-2bis {
+    font-family: "Oswald", sans-serif;
+    font-size: 48px;
+    color: #0b0b25;
     text-decoration: none;
-    font-size: 24px;
-    color: #6C8CF0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 46px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 21px;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #8fd6ff;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    padding: 0 14px 0 20px;
+    height: 54px;
+    background: rgba(110, 105, 190, 0.6);
+    border-radius: 27px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.search input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font: inherit;
+}
+
+.search button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+}
+
+/*Footer*/
+.footer {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 30px 30px 40px;
+    background: linear-gradient(110deg, #2e2c7a 0%, #3c4fa8 35%, #6ea8de 70%, #8ee0ff 100%);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-logo {
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    color: #1a1a3a;
+}
+
+.footer address {
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1.75;
+    color: #d6d9f2;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/*Services*/
+main {
+    padding-top: 30px;
+}
+
+.service + .service {
+    margin-top: 70px;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 40px 0 18px 32px;
+}
+
+.title-row h1,
+.title-row h2 {
+    font-size: 64px;
+    font-weight: 400;
+    color: #c9c8e6;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.programmer {
+    padding: 8px 34px;
+    font-size: 22px;
+    color: #cfe0ff;
+    text-decoration: none;
     border-radius: 25px;
-    background: linear-gradient(90deg, #3A6FD0 0%, #1A10E0 100%);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(90deg, #3a74d6 0%, #1a1fd8 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s, color 0.2s;
 }
 
-/* Éclaircit le texte du bouton au survol de la souris. */
-.programmer:hover {
-    color: white;
+.programmer:hover,
+.programmer:focus-visible {
+    color: #fff;
+    transform: translateY(-2px);
 }
 
-/* Stylise les tableaux du personnel. */
+.table-wrap {
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 24px;
+    background: rgba(100, 95, 170, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
 .equipe {
     width: 100%;
-    height: 100%;
-    border-spacing: 0px; /* enlève l'espace entre les cellules */
-    border-top: none;
-    border-radius: 20px;
-    background-color: rgba(70, 65, 150, 0.5);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* ombre sous le tableau */
+    min-width: 560px;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
 }
 
-/* Stylise les cellules des tableaux du personnel. */
+.equipe th,
 .equipe td {
-    text-align: left; /* le texte est aligné à gauche comme sur la maquette */
-    vertical-align: top; /* le texte reste en haut de la cellule */
-    padding: 0px 0px 0px 2%;
+    padding: 0 2%;
+    text-align: left;
+    overflow-wrap: anywhere;
 }
 
-/* Stylise la première ligne (nom des colonnes). */
-.entete td {
-    height: 115px;
-    line-height: 115px;
+.equipe th {
+    height: 64px;
     font-size: 24px;
-    color: white;
+    font-weight: 400;
+    background: rgba(120, 115, 200, 0.6);
 }
 
-/* Stylise la ligne d'un membre du personnel. */
-.membre td {
-    height: 50px;
-    line-height: 50px;
+.equipe th:first-child { border-radius: 20px 0 0 20px; }
+.equipe th:last-child { border-radius: 0 20px 20px 0; }
+
+.equipe td {
+    height: 56px;
     font-size: 18px;
-    color: #C8C8E8;
+    color: #e0e0f4;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Stylise tous les éléments div avec une hauteur de 100px. */
-div {
-    height: 100px;
+.equipe tbody tr:last-child td {
+    border-bottom: none;
 }
 
-/* Définit le style des tables sur la page. */
-table {
-    width: 100%; /* La table occupe 100% de la largeur de son conteneur. */
-    height: 180px; /* La table a une hauteur fixe de 180 pixels. */
-    background-color: rgba(75, 70, 150, 0.45); /* La couleur de fond de la table est violette transparente. */
-    border-top: 2px solid rgba(0, 0, 0, 0.3); /* Ajoute une ligne en haut du tableau. */
+.equipe tbody tr:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
-/* Définit le style des cellules (td) dans la table. */
-td {
-    padding: 10px; /* Ajoute un espace intérieur de 10 pixels à toutes les cellules. */
-    color: #C8C8E8; /* Définit la couleur du texte dans les cellules en gris clair. */
-    font-size: 19px;
+/*Pour page responsive*/
+@media (max-width: 1100px) {
+    .navbar { flex-wrap: wrap; }
+    .nav-links { gap: 24px; }
 }
 
-/* Enlève l'espace au dessus et en dessous des paragraphes du tableau. */
-td p {
-    margin: 8px;
-}
-
-/* Définit le style d'un élément avec l'ID "contact". */
-#contact {
-    max-width: 130px; /* La largeur maximale de l'élément est de 130 pixels. */
-    height: auto; /* La hauteur s'ajuste automatiquement pour maintenir les proportions d'origine. */
+@media (max-width: 800px) {
+    .navbar { justify-content: center; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .search { width: 100%; }
+    main { padding: 10px 16px 80px; }
+    .title-row { margin-left: 0; gap: 16px; flex-wrap: wrap; }
+    .title-row h1, .title-row h2 { font-size: 40px; }
+    .programmer { font-size: 18px; padding: 6px 22px; }
+    .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer address { font-size: 18px; }
 }

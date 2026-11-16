@@ -526,15 +526,24 @@ document.addEventListener("keydown", (e) => {
 
 
 async function init() {
+    // On ignore les données sauvegardées abîmées (évite un planning vide ou une erreur)
+    const valide = (i) => i && typeof i.titre === "string" && Array.isArray(i.personnes);
     ajouts = lire(STORAGE_AJOUTS, []);
+    if (!Array.isArray(ajouts)) ajouts = [];
+    ajouts = ajouts.filter(valide);
     modifs = lire(STORAGE_MODIFS, {});
+    if (typeof modifs !== "object" || Array.isArray(modifs)) modifs = {};
+    Object.keys(modifs).forEach((id) => { if (!valide(modifs[id])) delete modifs[id]; });
     try {
+        // Page ouverte en double-cliquant (file://) : le navigateur bloque fetch,
+        // on passe directement à la copie de secours sans erreur dans la console.
+        if (location.protocol === "file:") throw new Error("file://");
         const reponse = await fetch(JSON_URL);
         if (!reponse.ok) throw new Error(reponse.status);
         donnees = await reponse.json();
     } catch (err) {
         // fetch bloqué (file://) : on prend la copie de secours au lieu d'afficher une erreur
-        console.warn("planning.json non chargé, utilisation de la copie de secours :", err);
+        if (location.protocol !== "file:") console.warn("planning.json non chargé, copie de secours utilisée :", err);
         donnees = PLANNING_SECOURS;
     }
     remplirSelects();

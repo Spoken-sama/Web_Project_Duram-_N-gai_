@@ -1,0 +1,18 @@
+{
+    "zones": [
+        "Chambres",
+        "Réception",
+        "Cantine",
+        "Piscine",
+        "Spa"
+    ],
+    "stock": [
+        {
+            "id": 1,
+            "item": "Coussin",
+            "quantite": 20,
+            "zone": "Chambres",
+            "date": "2025-10-20"
+        }
+    ]
+}
