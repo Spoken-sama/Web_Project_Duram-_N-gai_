@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2Bis - Agenda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500&family=Oswald:wght@600&display=swap" rel="stylesheet"><!--Le font-->
+    <link rel="stylesheet" href="../Css/agenda.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logos">
+            <span class="logo-efrei">eFrei</span>
+            <a href="Home.html" class="logo-2bis">2Bis</a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="stock.html">STOCK</a></li>
+                <li><a href="agenda.html" class="active">AGENDA</a></li>
+                <li><a href="team.html">TEAM</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+        <form class="search" role="search">
+            <input type="search" aria-label="Rechercher">
+            <button type="submit" aria-label="Rechercher">
+                <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15" y1="15" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+    </header>
+
+    <main>
+        <div class="title-row">
+            <h1>Staff Hours:</h1>
+            <button class="btn-add" id="btn-add" type="button" aria-label="Ajouter un événement ou une tâche">+</button>
+        </div>
+        <section class="planning" id="planning"></section>
+
+
+        <section class="upcoming" aria-labelledby="upcoming-title">
+            <h2 id="upcoming-title">Prochains événements</h2>
+            <ul class="upcoming-list" id="upcoming"></ul>
+        </section>
+    </main>
+
+    <div class="overlay" id="overlay" hidden>
+        <form class="bubble" id="form-ajout" role="dialog" aria-modal="true" aria-labelledby="bubble-title">
+            <button class="bubble-close" type="button" aria-label="Fermer">&times;</button>
+            <h2 id="bubble-title">Ajouter au planning</h2>
+
+            <div class="type-switch">
+                <input type="radio" name="type" id="type-tache" value="tache" checked>
+                <label for="type-tache">Tâche</label>
+                <input type="radio" name="type" id="type-evenement" value="evenement">
+                <label for="type-evenement">Événement</label>
+            </div>
+
+            <label class="field">
+                <span>Titre</span>
+                <input type="text" name="titre" required maxlength="40">
+            </label>
+
+            <label class="field">
+                <span>Description</span>
+                <textarea name="description" rows="3" maxlength="200"></textarea>
+            </label>
+
+            <div class="field-row">
+                <label class="field">
+                    <span>Jour</span>
+                    <select name="jour" id="select-jour"></select>
+                </label>
+                <label class="field">
+                    <span>Heure</span>
+                    <select name="heure" id="select-heure"></select>
+                </label>
+                <label class="field">
+                    <span>Lieu</span>
+                    <input type="text" name="lieu" maxlength="30">
+                </label>
+            </div>
+
+            <fieldset class="field people">
+                <legend>Personnes</legend>
+                <div class="people-list" id="people-list"></div>
+                <div class="people-add">
+                    <input type="text" id="input-personne" placeholder="Ajouter une personne" maxlength="40">
+                    <button type="button" id="btn-personne">Ajouter</button>
+                </div>
+            </fieldset>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+            <button class="btn-submit" id="btn-submit" type="submit">Ajouter au planning</button>
+        </form>
+
+
+        <div class="bubble details" id="details" role="dialog" aria-modal="true" aria-labelledby="details-titre" hidden>
+            <button class="bubble-close" type="button" aria-label="Fermer">&times;</button>
+            <span class="badge" id="details-type"></span>
+            <h2 id="details-titre"></h2>
+            <p class="details-desc" id="details-desc"></p>
+
+            <dl class="details-infos">
+                <div>
+                    <dt>Jour</dt>
+                    <dd id="details-jour"></dd>
+                </div>
+                <div>
+                    <dt>Heure</dt>
+                    <dd id="details-heure"></dd>
+                </div>
+                <div>
+                    <dt>Lieu</dt>
+                    <dd id="details-lieu"></dd>
+                </div>
+            </dl>
+
+            <div>
+                <h3>Personnes</h3>
+                <div class="people-list" id="details-personnes"></div>
+            </div>
+
+            <button class="btn-submit" id="btn-modifier" type="button">Modifier</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <span class="footer-logo">eFrei</span>
+        <address>
+            <p>2Bis Paris :</p>
+            <p><a href="tel:+33188289001">+33 188 289 001</a></p>
+            <p><a href="mailto:2Bis@paris.net">2Bis@paris.net</a></p>
+            <p>30-32 Av. de la République, 94800 Villejuif</p>
+        </address>
+    </footer>
+
+    <script src="../js/agenda.js"></script>
+</body>
+</html>

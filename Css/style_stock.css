@@ -1,0 +1,229 @@
+/* Définit la couleur de fond du corps de la page web (dégradé bleu foncé vers bleu clair). */
+body {
+  background: linear-gradient(135deg, #01012B 0%, #0A0872 50%, #13D3F7 100%);
+  font-family: Georgia, serif;
+  margin: 0px; /* enlève la marge autour de la page */
+}
+
+/* Pour que le dégradé prenne toute la hauteur de l'écran. */
+html {
+  min-height: 100%;
+}
+
+/* Définit la hauteur du pied de page de la page web. */
+footer{height: 50px}
+
+/* Stylise la liste de navigation en la débarrassant des puces, marges et paddings par défaut. */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Stylise les éléments de la liste de navigation. */
+nav ul li {
+  width: 10%;
+  height: 80px;
+  line-height: 80px;
+  float: left;
+  text-align: center;
+}
+
+/* Stylise les liens dans la liste de navigation. */
+nav ul li a {
+  text-decoration: none;
+  font-size: 19px;
+  font-family: Georgia, serif;
+}
+
+/* Stylise un élément avec la classe "sticky" pour une barre de menu fixe en haut de la page. */
+.sticky{
+    position: sticky;
+    top: 10px; /* distance entre le bord supérieur :de la page, et de l'élément */
+    height: 80px; /* modifie la hauteur */
+    margin: 0px 5px; /* ajoute de l'espace entre l'élément et son voisin */
+    background-color: rgba(75, 70, 150, 0.45);
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* ombre sous la barre */
+    z-index: 1500; /* Pour que la barre nav sois utilisable même en naviguant dans la page */
+}
+
+/* Stylise le logo de l'efrei dans la barre de navigation. */
+.logo {
+    width: 8%;
+}
+
+/* Centre verticalement l'image du logo. */
+.logo img {
+    vertical-align: middle;
+}
+
+/* Stylise le nom du site "2Bis". */
+.titre {
+    width: 12%;
+    font-family: Impact, sans-serif;
+    font-size: 50px;
+    color: #0A0A3A;
+}
+
+/* Stylise la case de la barre de recherche, placée à droite. */
+.recherche {
+    width: 24%;
+    float: right;
+}
+
+/* Stylise la barre de recherche. */
+.recherche input[type ="text"] {
+    width: 85%;
+    height: 46px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(110, 100, 190, 0.7);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+    vertical-align: middle;
+    color: white;
+    padding-left: 15px;
+}
+
+/* Enlève le contour quand on clique sur la barre de recherche. */
+.recherche input[type ="text"]:focus {
+    outline: none;
+}
+
+/* Stylise la loupe, placée par dessus la barre de recherche. */
+.loupe {
+    width: 26px;
+    margin-left: -50px; /* décale la loupe vers la gauche pour qu'elle soit dans la barre */
+    vertical-align: middle;
+}
+
+/* Stylise un élément avec la classe "relative_absolute". */
+.relative_absolute{
+    width: 100%; /* modification de la largeur */
+    height: 820px; /* modifie la hauteur */
+    position: relative; /* positionb par défaut, statique */
+}
+
+/* Stylise le titre de la page. */
+.absolute1{
+    width: 60%; /* modification de la largeur */
+    height: 120px; /* modifie la hauteur */
+    position: absolute; /* positionné par rapport à son élément parant (position relative) */
+    top: 40px; /* distance entre le bord supérieur :de la page, et de l'élément */
+    left: 2%; /* déplacement vers la gauche */
+}
+
+/* Stylise le conteneur du tableau des stocks. */
+.absolute2{
+    width: 97%; /* modification de la largeur */
+    height: 550px; /* modifie la hauteur */
+    position: absolute; /* positionné par rapport à son élément parant (position relative) */
+    top: 170px; /* distance entre le bord supérieur :de la page, et de l'élément */
+    left: 1.5%; /* déplacement vers la gauche */
+}
+
+/* Stylise la petite barre en haut à droite du tableau. */
+.absolute3{
+    width: 16%; /* modification de la largeur */
+    height: 34px; /* modifie la hauteur */
+    position: absolute; /* positionné par rapport à son élément parant (position relative) */
+    top: 184px; /* distance entre le bord supérieur :de la page, et de l'élément */
+    right: 2.8%; /* déplacement vers la droite */
+}
+
+/* Stylise la barre à l'intérieur de absolute3. */
+.absolute3 input[type ="text"] {
+    width: 100%;
+    height: 34px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(110, 100, 190, 0.7);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+    color: white;
+    padding-left: 15px;
+    box-sizing: border-box; /* le padding est compris dans la largeur */
+}
+
+/* Enlève le contour quand on clique sur la barre. */
+.absolute3 input[type ="text"]:focus {
+    outline: none;
+}
+
+/* Stylise le titre "Stocks:". */
+.titre_page {
+    margin: 0px;
+    color: #C8C8DC;
+}
+
+/* Stylise le tableau des stocks. */
+.stock {
+    width: 100%;
+    height: 100%;
+    border-spacing: 0px; /* enlève l'espace entre les cellules */
+    border-top: none;
+    border-radius: 20px;
+    background-color: rgba(70, 65, 150, 0.5);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* ombre sous le tableau */
+}
+
+/* Stylise les cellules du tableau des stocks. */
+.stock td {
+    text-align: center;
+    vertical-align: top; /* le texte reste en haut de la cellule */
+    border-right: 1px solid rgba(255, 255, 255, 0.15); /* trait entre les colonnes */
+    padding: 0px;
+}
+
+/* Stylise la dernière colonne du tableau (texte à gauche, pas de trait à droite). */
+.stock .derniere {
+    text-align: left;
+    padding-left: 7.5%;
+    border-right: none;
+}
+
+/* Stylise la première ligne (nom des colonnes). */
+.entete td {
+    height: 80px;
+    line-height: 80px;
+    font-size: 20px;
+    color: white;
+}
+
+/* Stylise la ligne d'un objet du stock. */
+.objet td {
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    color: black;
+}
+
+/* Stylise tous les éléments div avec une hauteur de 100px. */
+div {
+    height: 100px;
+}
+
+/* Définit le style des tables sur la page. */
+table {
+    width: 100%; /* La table occupe 100% de la largeur de son conteneur. */
+    height: 180px; /* La table a une hauteur fixe de 180 pixels. */
+    background-color: rgba(75, 70, 150, 0.45); /* La couleur de fond de la table est violette transparente. */
+    border-top: 2px solid rgba(0, 0, 0, 0.3); /* Ajoute une ligne en haut du tableau. */
+}
+
+/* Définit le style des cellules (td) dans la table. */
+td {
+    padding: 10px; /* Ajoute un espace intérieur de 10 pixels à toutes les cellules. */
+    color: #C8C8E8; /* Définit la couleur du texte dans les cellules en gris clair. */
+    font-size: 19px;
+}
+
+/* Enlève l'espace au dessus et en dessous des paragraphes du tableau. */
+td p {
+    margin: 8px;
+}
+
+/* Définit le style d'un élément avec l'ID "contact". */
+#contact {
+    max-width: 130px; /* La largeur maximale de l'élément est de 130 pixels. */
+    height: auto; /* La hauteur s'ajuste automatiquement pour maintenir les proportions d'origine. */
+}
